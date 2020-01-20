@@ -1,6 +1,6 @@
 # Code Challenge
 
-Must exists an AWS Account with one topic configured on SNS service. Its mandatory to be subscribed to this topic with a SQS (Standar not FIFO).
+Must exists an AWS Account with one topic configured on SNS service. Its mandatory to be subscribed to this topic with a SQS (Standard not FIFO).
 
 ## Run app locally
 ```
