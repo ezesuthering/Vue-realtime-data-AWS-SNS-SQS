@@ -1,5 +1,7 @@
 # Code Challenge
 
+Vue Js application using Vuex, Vue Router, Vuetify, PWA Support, SQS-Consumer and AWS-SDK. It provides realtime data in the UI without refreshing the browser. The data is a message that its published by the SNS (Simple Notification Service) to a SQS (Simple Queue Service). The Client its long polling the queue so its notified when a new message its available. And when it is the message is processed by the application in realtime.
+
 Must exists an AWS Account with one topic configured on SNS service. Its mandatory to be subscribed to this topic with a SQS (Standard not FIFO).
 
 ## Run app locally
