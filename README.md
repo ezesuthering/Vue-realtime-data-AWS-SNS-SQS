@@ -29,11 +29,9 @@ On root directory:
 src/credential.js
 
 Must be set:
+ACCESS_KEY_ID: The Access Key ID of the IAM user provided by AWS
+SECRET_ACCESS_KEY: The Secret Access Key of the IAM user provided by AWS
+REGION: The region of the account services E.G: 'sa-east-1'
+QUEUE_URL: The SQS Queue URL
+TOPIC_ARN: The Topic ARN
 
-module.exports = {
-    ACCESS_KEY_ID: The Access Key ID of the IAM user provided by AWS,
-    SECRET_ACCESS_KEY: The Secret Access Key of the IAM user provided by AWS,
-    REGION: The region of the account services E.G: 'sa-east-1',
-    QUEUE_URL: The SQS Queue URL,
-    TOPIC_ARN: The Topic ARN
-} 
