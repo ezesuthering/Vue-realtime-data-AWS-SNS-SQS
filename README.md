@@ -1,24 +1,39 @@
-# code-challenge
+# Code Challenge
 
-## Project setup
-```
-npm install
-```
+Must exists an AWS Account with one topic configured on SNS service. Its mandatory to be subscribed to this topic with a SQS (Standar not FIFO).
 
-### Compiles and hot-reloads for development
+## Run app locally
 ```
 npm run serve
 ```
 
-### Compiles and minifies for production
+### Publish notifications
 ```
-npm run build
+There are 3 types of notifications
+On root directory:
+1) node publish.js notif1
+2) node publish.js notif2
+3) node publish.js notif3
 ```
 
-### Lints and fixes files
+### Publish news
 ```
-npm run lint
+There are 3 types of notifications
+On root directory:
+1) node publish.js new1
+2) node publish.js new2
+3) node publish.js new3
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### Crendentials file
+src/credential.js
+
+Must be set:
+
+module.exports = {
+    ACCESS_KEY_ID: The Access Key ID of the IAM user provided by AWS,
+    SECRET_ACCESS_KEY: The Secret Access Key of the IAM user provided by AWS,
+    REGION: The region of the account services E.G: 'sa-east-1',
+    QUEUE_URL: The SQS Queue URL,
+    TOPIC_ARN: The Topic ARN
+} 
