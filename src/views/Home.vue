@@ -6,6 +6,7 @@
 
 <script>
 import HomeContent from '@/components/Home/Content.vue'
+
 export default {
   name: 'home-view',
   components: {

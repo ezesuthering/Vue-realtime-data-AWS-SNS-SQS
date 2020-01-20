@@ -15,9 +15,6 @@ export default {
         activeNotificationStatus: {
             get() {
                 return this.$store.getters.getNotificationActiveStatus
-            },
-            set() {
-
             }
         },
         activeNotificationMessage: {

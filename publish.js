@@ -8,61 +8,62 @@ AWS.config.update({
     secretAccessKey: AWS_CREDENTIALS.SECRET_ACCESS_KEY
 });
 
-let args = process.argv;
+let type = process.argv[2];
 let message = {};
-if(args[2] == 'notif1') {
-    message = {
-        id: '1',
-        type: 1,
-        title: 'PENDING UPDATE',
-        message: 'Application will be updated to the latest version on 21:00pm.'
-    }
-}
 
-if(args[2] == 'notif2') {
-     message = {
-        id: '2',
-        type: 1,
-        title: 'PLEASE RANK US IN GOOGLE PLAY!',
-        message: 'Hi dear user! We are in google play rank. Please leave your comment!'
-    }
-}
-
-if(args[2] == 'notif3') {
-    message = {
+switch (type) {
+    case 'notif1':
+        message = {
+            id: '1',
+            type: 1,
+            title: 'PENDING UPDATE',
+            message: 'Application will be updated to the latest version on 21:00pm.'
+        }
+      break;
+    case 'notif2':
+        message = {
+            id: '2',
+            type: 1,
+            title: 'PLEASE RANK US IN GOOGLE PLAY!',
+            message: 'Hi dear user! We are in google play rank. Please leave your comment!'
+        }
+      break;
+    case 'notif3':
+        message = {
             id: '3',
             type: 1,
             title: 'INCOMING MESSAGE',
             message: 'You have 1 message/s left from user TestUser'
     }
-}
-
-if(args[2] == 'new1') {
-    message = {
-        id: 1,
-        type: 2,
-        title: 'FLASH NEWS: 30% DISCOUNT IN TECHNOLOGY',
-        message: 'TEXT NEW 1 TEXT NEW 1 TEXT NEW 1 TEXT NEW 1 TEXT NEW 1 TEXT NEW 1 TEXT NEW 1 TEXT NEW 1 TEXT NEW 1 TEXT NEW 1 TEXT NEW 1 TEXT NEW 1 TEXT NEW 1 TEXT NEW 1 TEXT NEW 1 TEXT NEW 1 TEXT NEW 1 TEXT NEW 1 TEXT NEW 1 TEXT NEW 1 TEXT NEW 1 TEXT NEW 1 TEXT NEW 1 '
-    }
-}
-
-if(args[2] == 'new2') {
-    message = {
-        id: 2,
-        type: 2,
-        title: 'WHAT YOU KNOW ABOUT TECHNOLOGY ?',
-        message: 'TEXT NEW 2 TEXT NEW 2 TEXT NEW 2 TEXT NEW 2 TEXT NEW 2 TEXT NEW 2 TEXT NEW 2 TEXT NEW 2 TEXT NEW 2 TEXT NEW 2 TEXT NEW 2 TEXT NEW 2 TEXT NEW 2 TEXT NEW 2 TEXT NEW 2 TEXT NEW 2 TEXT NEW 2 TEXT NEW 2 TEXT NEW 2 TEXT NEW 2 TEXT NEW 2 TEXT NEW 2 TEXT NEW 2'
-    }
-}
-
-if(args[2] == 'new3') {
-    message = {
-        id: 3,
-        type: 2,
-        title: 'QA AUTOMATION ARTICLE',
-        message: 'TEXT NEW 3 TEXT NEW 3 TEXT NEW 3 TEXT NEW 3 TEXT NEW 3 TEXT NEW 3 TEXT NEW 3 TEXT NEW 3 TEXT NEW 3 TEXT NEW 3 TEXT NEW 3 TEXT NEW 3 TEXT NEW 3 TEXT NEW 3 TEXT NEW 3 TEXT NEW 3 TEXT NEW 3 TEXT NEW 3 TEXT NEW 3 TEXT NEW 3 TEXT NEW 3 TEXT NEW 3 TEXT NEW 3'
-    }
-}
+      break;
+    case 'new1':
+        message = {
+            id: 1,
+            type: 2,
+            title: 'FLASH NEWS: 30% DISCOUNT IN TECHNOLOGY',
+            message: 'TEXT NEW 1 TEXT NEW 1 TEXT NEW 1 TEXT NEW 1 TEXT NEW 1 TEXT NEW 1 TEXT NEW 1 TEXT NEW 1 TEXT NEW 1 TEXT NEW 1 TEXT NEW 1 TEXT NEW 1 TEXT NEW 1 TEXT NEW 1 TEXT NEW 1 TEXT NEW 1 TEXT NEW 1 TEXT NEW 1 TEXT NEW 1 TEXT NEW 1 TEXT NEW 1 TEXT NEW 1 TEXT NEW 1 '
+        }
+      break;
+    case 'new2':
+        message = {
+            id: 2,
+            type: 2,
+            title: 'WHAT YOU KNOW ABOUT TECHNOLOGY ?',
+            message: 'TEXT NEW 2 TEXT NEW 2 TEXT NEW 2 TEXT NEW 2 TEXT NEW 2 TEXT NEW 2 TEXT NEW 2 TEXT NEW 2 TEXT NEW 2 TEXT NEW 2 TEXT NEW 2 TEXT NEW 2 TEXT NEW 2 TEXT NEW 2 TEXT NEW 2 TEXT NEW 2 TEXT NEW 2 TEXT NEW 2 TEXT NEW 2 TEXT NEW 2 TEXT NEW 2 TEXT NEW 2 TEXT NEW 2'
+        }
+      break;   
+    case 'new3':
+        message = {
+            id: 3,
+            type: 2,
+            title: 'QA AUTOMATION ARTICLE',
+            message: 'TEXT NEW 3 TEXT NEW 3 TEXT NEW 3 TEXT NEW 3 TEXT NEW 3 TEXT NEW 3 TEXT NEW 3 TEXT NEW 3 TEXT NEW 3 TEXT NEW 3 TEXT NEW 3 TEXT NEW 3 TEXT NEW 3 TEXT NEW 3 TEXT NEW 3 TEXT NEW 3 TEXT NEW 3 TEXT NEW 3 TEXT NEW 3 TEXT NEW 3 TEXT NEW 3 TEXT NEW 3 TEXT NEW 3'
+        }
+       break;  
+    default:
+        message = {}
+        break; 
+  }
 
 let params = {
   Message: JSON.stringify(message),
@@ -72,9 +73,9 @@ let params = {
 let publishTextPromise = new AWS.SNS().publish(params).promise();
 
 publishTextPromise.then(
-  function(data) {
-    console.log("Message" + params.Message + "send sent to the topic" + params.TopicArn);
+  () => {
+    console.log("Message".concat(params.Message).concat("send sent to the topic").concat(params.TopicArn));
   }).catch(
-    function(err) {
+    (err) => {
     console.error(err, err.stack);
   });

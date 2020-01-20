@@ -14,17 +14,10 @@ import Notification from '@/components/Notification.vue'
 
 export default {
   name: 'App',
-
   components: {
    Navbar,
    Footer,
    Notification
-},
-  created() {
-
-
-
-
-  },
+}
 };
 </script>

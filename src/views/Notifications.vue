@@ -4,6 +4,7 @@
 
 <script>
 import NotificationsContent from '@/components/Notifications/Content'
+
 export default {
   name: 'notificataions',
   components: {
